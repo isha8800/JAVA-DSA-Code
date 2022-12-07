@@ -1,0 +1,73 @@
+import java.util.EmptyStackException;
+import java.util.Stack;
+
+// Java 
+// Stack program by Linked list concept
+
+public class stack{
+    private listNode top;
+    private int length;
+
+    private class listNode{
+        private int data;
+        private listNode next;
+
+        private listNode(int data){ //constructor
+            this.data=data;
+        }
+    }
+    public stack() { //constructor
+        top=null;
+        length=0;
+    }
+    public int length(){
+        return length;
+    }
+    public boolean isEmpty(){
+        return length==0;
+    }
+    // push operation
+    public void push(int data) {
+        listNode temp = new listNode(data);
+        temp.next = top;
+        top = temp;
+        length++;
+    }
+    //pop operation
+    public int pop(){
+        if(isEmpty()){
+            throw new EmptyStackException();
+        }
+        int result=top.data;
+        top=top.next;
+        length--;
+        return result;
+    }
+    // peek operation gives the value of last inserted node
+     public int peek(){
+        if(isEmpty()){
+            throw new EmptyStackException();
+        }
+        return top.data;
+     }
+     //public void display(){
+
+    // }
+     // main method
+     public static void main(String[] args) {
+         stack stackobj =new stack();
+         stackobj.push(10);
+         stackobj.push(15);
+         stackobj.push(20);
+         System.out.println(stackobj.peek());
+         System.out.println(stackobj.pop());
+         System.out.println(stackobj.peek());
+         stackobj.push(400);
+         stackobj.push(90);
+         System.out.println(stackobj.peek());
+         System.out.println(stackobj.pop());
+         System.out.println(stackobj.pop());
+         System.out.println(stackobj.peek());
+
+     }
+}
